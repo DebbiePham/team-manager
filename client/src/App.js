@@ -23,8 +23,6 @@ function App() {
         <Route path='/players/list' element={<Dashboard/>} />
         <Route path='/players/addplayer' element={<CreateForm/>} />
         <Route path='/status/game/:num' element={<PlayerStatus/>} />
-        {/* <Route path='/status/game/:num' element={<PlayerStatus/>} />
-        <Route path='/status/game/:num' element={<PlayerStatus/>} /> */}
       </Routes>
     </div>
   );
