@@ -6,11 +6,16 @@ const Dashboard = () => {
     const [players, setPlayers] = useState([]);
     const [loaded, setLoaded] = useState(false);
 
-    const deletePlayer = (id) => {
-        axios
+    const deletePlayer = (id, name) => {
+
+        if (window.confirm(`Are you sure you want to remove \n${name}?`)) {
+            axios
             .delete(`http://localhost:8000/api/players/${id}`)
-            .then(setLoaded(!loaded))
+            .then(() => {
+                setLoaded(!loaded)})
             .catch((err) => console.log(err))
+        }
+        
     };
 
     const fetchPlayers = () => {
