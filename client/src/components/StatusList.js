@@ -10,9 +10,8 @@ const StatusList = (props) => {
     const [currentGame, setCurrentGame] = useState("game1")
 
     const handleClick = (id, status, gameNum) => {
-        const filteredPlayer = players.filter((onePlayer) => onePlayer._id === id);
-        const playerObj = filteredPlayer[0];
-        const updatedPlayer = {...playerObj, status: {...playerObj.status, [gameNum]:status}}
+        const filteredPlayer = players.filter((onePlayer) => onePlayer._id === id)[0];
+        const updatedPlayer = {...filteredPlayer, status: {...filteredPlayer.status, [gameNum]:status}}
         console.log(updatedPlayer);
         handleUpdate(id, updatedPlayer);
     }
