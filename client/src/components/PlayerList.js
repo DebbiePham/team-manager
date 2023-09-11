@@ -25,7 +25,7 @@ const PlayerList = (props) => {
                             <tr key={index} className='border border-white'>
                                 <td colSpan={2} className='border border-white'>{player.name}</td>
                                 <td colSpan={2} className='border border-white'>{player.position}</td>
-                                <td><button onClick={() => deletePlayer(player._id)} className='btn btn-danger m-3'>Delete</button></td>
+                                <td><button onClick={() => deletePlayer(player._id, player.name)} className='btn btn-danger m-3'>Delete</button></td>
                             </tr>
                         );
                     })}
