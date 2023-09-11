@@ -6,23 +6,14 @@ import StatusList from "../components/StatusList";
 const PlayerStatus = () => {
     const [players, setPlayers] = useState([]);
     const [loaded, setLoaded] = useState(false);
-    const [status, setStatus] = useState('Undecided')
+    const [status, setStatus] = useState('')
 
 
-    const handleUpdate = (id, status) => {
+    const handleUpdate = (id, updatedPlayer) => {
 
         axios
-            .put(`http://localhost:8000/api/players/${id}`, {
-                status: status
-            })
-            .then((res) => {
-                axios.get("http://localhost:8000/api/players")
-                .then((res) => {
-                    setPlayers(res.data.players);
-                    setStatus(res.data.players);
-                    setLoaded(!loaded);
-                })
-            })
+            .put(`http://localhost:8000/api/players/${id}`, updatedPlayer)
+            .then((res) => console.log(res))
             .catch((err) => console.error(err));
     };
 
@@ -30,8 +21,8 @@ const PlayerStatus = () => {
         axios
             .get("http://localhost:8000/api/players")
             .then((res) => {
-                setPlayers(res.data.players);
-                setStatus(res.data.players);
+                setPlayers(res.data);
+                setStatus(res.data);
                 setLoaded(!loaded);
             })
             .catch((err) => console.error(err));

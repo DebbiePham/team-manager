@@ -3,10 +3,10 @@ const { Player } = require('../models/player.model');
 module.exports.findAllPlayers = (req, res) => {
     Player.find()
         .then((allPlayers) => {
-            res.json({ players: allPlayers });
+            res.json( allPlayers );
         })
         .catch((err) => {
-            res.json(err);
+            res.status(400).json(err);
         });
 }
 
@@ -16,7 +16,7 @@ module.exports.findOnePlayer = (req, res) => {
             res.json({ player: oneSinglePlayer });
         })
         .catch((err) => {
-            res.json(err);
+            res.status(400).json(err);
         });
 }
 
@@ -37,10 +37,10 @@ module.exports.updatePlayer = (req, res) => {
         { new: true, runValidators: true }
     )
         .then(updatedPlayer => {
-            res.json({ player: updatedPlayer });
+            res.json({ updatedPlayer });
         })
         .catch((err) => {
-            res.json(err);
+            res.status(400).json(err);
         });
 };
 
@@ -50,7 +50,7 @@ module.exports.deletePlayer = (req, res) => {
             res.json({ result: result });
         })
         .catch((err) => {
-            res.json(err);
+            res.status(400).json(err);
         });
 };
 

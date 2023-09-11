@@ -22,7 +22,7 @@ const Dashboard = () => {
         axios
             .get("http://localhost:8000/api/players")
             .then((res) => {
-                setPlayers(res.data.players);
+                setPlayers(res.data);
                 setLoaded(!loaded);
             })
             .catch((err) => console.error(err));

@@ -8,7 +8,7 @@ const CreateForm = () => {
     const [position, setPosition] = useState(""); 
     const [status, setStatus] = useState('Undecided')
     const navigate = useNavigate();
-    const [error, setError] = useState()
+    const [error, setError] = useState([]);
     
 
     //handler when the form is submitted
@@ -27,9 +27,14 @@ const CreateForm = () => {
                 navigate('/players/list');
             })
             .catch((err) => {
+                console.log('Error Triggered! Bad Request!', err.response.data.errors);
                 const errorResponse = err.response.data.errors;
-                console.log(errorResponse.name.message);
-                setError(errorResponse.name.message);
+                const errorArr = [];
+
+                for (const key of Object.keys(errorResponse)) {
+                    errorArr.push(errorResponse[key].message);
+                }
+                setError(errorArr);
             });
     };
     return (
@@ -45,10 +50,16 @@ const CreateForm = () => {
                 </div>
                 <div className="card-body text-center">
                     <form onSubmit={onSubmitHandler}>
+                        {
+                            error.map((err, idx) => {
+                                return (
+                                <p className='text-danger' key={idx}>{err}</p>
+                                )
+                            })
+                        }
                         <p className='d-flex gap-3'>
                             <label htmlFor='name' className='fw-bold'>Player Name: </label><br/>
                             <input className='bg-light text-dark' id='name' type="text" onChange={(e)=>setName(e.target.value)} value={name}/>
-                            {error && <p className='text-danger'>{error}</p>}
                         </p>
                         <p className='d-flex gap-3'>
                             <label htmlFor='position' className='fw-bold'>Preferred Position: </label><br/>

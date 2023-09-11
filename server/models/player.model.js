@@ -14,8 +14,18 @@ const PlayerSchema = new mongoose.Schema({
     },
 
     status: {
-        type: String,
-        enum: ['Playing', 'Not Playing', 'Undecided']
+        game1: {
+            type: String, 
+            default: 'Undecided'
+        },
+        game2: {
+            type: String,
+            default: 'Undecided'
+        },
+        game3: {
+            type: String,
+            default: 'Undecided'
+        }
     }
     
 }, { timestamps: true }); // this automatically give createdAt and updatedAt
